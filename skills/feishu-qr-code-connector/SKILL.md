@@ -17,7 +17,7 @@ description: Connect a user-selected Feishu Bitable to Heyvoxo so a row button s
 - 健康检查：`GET https://api.heyvoxo.com/health`。
 - 请求头：`Content-Type: application/json`、`Authorization: Bearer <表格专属 Key>`。
 - 请求体仅包含 `{"sku":"当前触发行的 SKU"}`。不要传链接、表 ID、行 ID、产品名称、设计或尺寸参数。
-- Heyvoxo 按 Key 的创建者和传入 SKU 查询目标链接；首次调用自动创建并保存，重复调用复用原链接，然后生成默认黑白 PNG，写回绑定表同一 SKU 行的 `售后二维码图片` 附件列。默认 30 × 30 mm、600 DPI 对应 709 × 709 像素、M 容错、四模块静区。打印时按 30 mm 设置实际尺寸；不依赖图片 DPI 元数据。
+- Heyvoxo 按 Key 的创建者和传入 SKU 查询目标链接；首次调用自动创建并保存，重复调用复用原链接，然后生成默认黑白 PNG，写回绑定表同一 SKU 行的 `售后二维码图片` 附件列。默认二维码区域 30 × 30 mm，底部另加 5 mm SKU 文字区，成品 30 × 35 mm、600 DPI 对应 709 × 827 像素。M 容错、四模块静区，SKU 不侵入安全留白。长 SKU 自动换行并增加文字区高度，以接口返回的 width、height 为准；打印时按成品实际尺寸设置。PNG 携带 600 DPI 元数据，文件名包含 SKU 和成品尺寸。
 - Key 绑定单张表，不能跨表使用。系统只存哈希，支持轮换和撤销。不要使用旧域名或 zctech 接口。
 
 ## 1. 确认目标表
